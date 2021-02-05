@@ -6,7 +6,7 @@ import ImageGallery from '../ImageGallery';
 
 export default class ImageInfo extends Component {
   state = {
-    photos: [],
+    photos: null,
     status: 'idle',
     error: '',
     page: 1,
@@ -41,10 +41,10 @@ export default class ImageInfo extends Component {
         })
         .then(nextPhotos => {
           this.setState(prevState => ({
-            photos: [...prevState.photos.hits, ...nextPhotos],
+            photos: { ...prevState.photos, ...nextPhotos },
             status: 'resolved',
           }));
-          //   console.log(photos.hits);
+          console.log(nextPhotos.hits);
         })
         .catch(error => this.setState({ error, status: 'rejected' }));
     }
@@ -72,7 +72,7 @@ export default class ImageInfo extends Component {
 
     if (status === 'resolved') {
       return (
-        <ImageGallery photos={photos}>
+        <ImageGallery photos={photos.hits}>
           <Button onClick={this.onClickLoadMore} />
         </ImageGallery>
       );
