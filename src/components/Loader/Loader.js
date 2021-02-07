@@ -1,17 +1,20 @@
 import React from 'react';
 import Loader from 'react-loader-spinner';
+import { createPortal } from 'react-dom';
 import mc from './Loader.module.css';
-// import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css';
+import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css';
 
 export default function LoaderSpinner() {
-  return (
+  const spinnerRoot = document.querySelector('#spinner-root');
+  return createPortal(
     <Loader
-      type="TailSpin"
-      color="yellowgreen"
-      height={100}
+      type="ThreeDots"
+      color="#3f51b5"
+      height={50}
       width={100}
-      timeout={3000}
+      timeout={5000}
       className={mc.Loader}
-    />
+    />,
+    spinnerRoot,
   );
 }

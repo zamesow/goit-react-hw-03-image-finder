@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
-// import ImageGallery from '../ImageGallery';
-// import ImageGalleryItem from '../ImageGalleryItem';
-// import Loader from '../Loader';
+import PropTypes from 'prop-types';
 import mc from './Searchbar.module.css';
 
 export default class Searchbar extends Component {
@@ -18,9 +16,7 @@ export default class Searchbar extends Component {
     e.preventDefault();
 
     if (tagToSearch.trim() === '') {
-      alert('Введите тег для поиска картинки');
-
-      return;
+      return alert('You must write anything before submit!');
     }
 
     this.props.onSubmit(tagToSearch);
@@ -52,17 +48,12 @@ export default class Searchbar extends Component {
         </header>
       </div>
     );
-
-    //
-    // if (status === 'pending') {
-    //   <Loader />;
-    // }
-
-    // if (status === 'rejected') {
-    //   return <ImageGalleryItem message={error.message} />;
-    // }
   }
 }
+
+Searchbar.propTypes = {
+  tagToSearch: PropTypes.string,
+};
 
 // note 1. отображение вводимого значения
 // создаём имя tagToSearch: '' в state, для записи вводимого текста в форму

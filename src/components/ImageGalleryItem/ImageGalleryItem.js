@@ -1,9 +1,10 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import mc from './ImageGalleryItem.module.css';
 
-export default function ImageGalleryItem({ photo }) {
-  const { id, webformatURL } = photo;
-  //   this.props.photo(photo);
+export default function ImageGalleryItem({ photo, onClick }) {
+  const { id, webformatURL, largeImageURL } = photo;
+
   return (
     <div>
       <ul className={mc['ImageGalleryItem-container']}>
@@ -12,6 +13,8 @@ export default function ImageGalleryItem({ photo }) {
             src={webformatURL}
             alt={id}
             className={mc['ImageGalleryItem-image']}
+            data-source={largeImageURL}
+            onClick={onClick}
           />
         </li>
       </ul>
@@ -19,6 +22,9 @@ export default function ImageGalleryItem({ photo }) {
   );
 }
 
+ImageGalleryItem.propTypes = {
+  photo: PropTypes.object.isRequired,
+};
+
 // note 8. принимаем пропс и достаём из него нужные свойства
-// присваиваем каждому <li> свой ключ
 // присваиваем данные src и alt

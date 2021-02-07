@@ -1,23 +1,12 @@
-import React, { Component } from 'react';
+import React from 'react';
+import mc from './Button.module.css';
 
-export default class Button extends Component {
-  scroll = e => {
-    this.props.onClick();
-
-    window.scrollTo({
-      top: document.documentElement.scrollHeight,
-      behavior: 'smooth',
-    });
-    console.log(e.target);
-  };
-
-  render() {
-    return (
-      <div>
-        <button onClick={this.scroll} className="Button" type="button">
-          Load more
-        </button>
-      </div>
-    );
-  }
+export default function Button({ onClick }) {
+  return (
+    <div style={{ textAlign: 'center' }}>
+      <button onClick={onClick} className={mc.Button} type="button">
+        Load more
+      </button>
+    </div>
+  );
 }
